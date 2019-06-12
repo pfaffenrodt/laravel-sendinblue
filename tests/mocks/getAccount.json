@@ -1,0 +1,32 @@
+{
+    "email": "billy@example.com",
+    "firstName": "Billy",
+    "lastName": "Smith",
+    "companyName": "B Smith",
+    "address": {
+        "street": "123 Fake Lane",
+        "city": "Mock City",
+        "zipCode": "M8287G",
+        "country": "United Kingdom"
+    },
+    "plan": [
+        {
+            "type": "free",
+            "creditsType": "sendLimit",
+            "credits": 300
+        },
+        {
+            "type": "sms",
+            "creditsType": "sendLimit",
+            "credits": 0
+        }
+    ],
+    "relay": {
+        "enabled": true,
+        "data": {
+            "userName": "billy@example.com",
+            "relay": "smtp-relay.sendinblue.com",
+            "port": 587
+        }
+    }
+}

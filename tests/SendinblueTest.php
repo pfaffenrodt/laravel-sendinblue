@@ -14,8 +14,5 @@ class SendinblueTest extends TestCase
         $this->sendinblue = new Sendinblue();
     }
 
-    public function testCanGetAccount()
-    {
-        $request = $this->sendinblue->getAccount();
-    }
+    //
 }
