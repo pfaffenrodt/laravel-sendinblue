@@ -1,0 +1,82 @@
+<?php
+
+namespace Damcclean\Sendinblue;
+
+use GuzzleHttp\Client;
+use SendinBlue\Client\Api\AccountApi;
+use SendinBlue\Client\Api\ContactsApi;
+use SendinBlue\Client\Configuration;
+
+class Sendinblue
+{
+    public function __construct()
+    {
+        $this->config = Configuration::getDefaultConfiguration()->setApiKey('api-key', config('sendinblue.apiKey'));
+        $this->client = new Client();
+
+        $this->accounts = new AccountApi($this->client, $this->config);
+        $this->contacts = new ContactsApi($this->client, $this->config);
+    }
+
+    public function getAccount()
+    {
+        return $this->accounts->getAccount();
+    }
+
+    public function getContacts()
+    {
+        return $this->contacts->getContacts();
+    }
+
+    public function getContactDetails($email)
+    {
+        return $this->contacts->getContactInfo($email);
+    }
+
+    public function createContact($email, $attributes = null)
+    {
+        $options = [
+            'email' => $email
+        ];
+
+        if($attributes != null) {
+            $options['attributes'] = $attributes;
+        }
+
+        return $this->contacts->createContact(json_encode($options));
+    }
+
+    public function deleteContact($email)
+    {
+        return $this->contacts->deleteContact($email);
+    }
+    
+    public function createFolder($name) 
+    {
+        $options = [
+            'name' => $name
+        ];
+
+        return $this->contacts->createFolder(json_encode($options));
+    }
+
+    public function getLists()
+    {
+        return $this->contacts->getLists();
+    }
+
+    public function getList($listId)
+    {
+        return $this->contacts->getList($listId);
+    }
+
+    public function createList($name, $folderId)
+    {
+        $options = [
+            'name' => $name,
+            'folderId' => $folderId
+        ];
+
+        return $this->contacts->createList(json_encode($options));
+    }
+}
