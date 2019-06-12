@@ -1,5 +1,5 @@
 {
-    "name": "damcclean/sendinblue",
+    "name": "damcclean/laravel-sendinblue",
     "description": "Manage Send in Blue Newsletters in Laravel",
     "keywords": [
         "damcclean",
