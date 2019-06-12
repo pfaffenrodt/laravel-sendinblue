@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/damcclean/sendinblue.svg?style=flat-square)](https://scrutinizer-ci.com/g/damcclean/sendinblue)
 [![Total Downloads](https://img.shields.io/packagist/dt/damcclean/sendinblue.svg?style=flat-square)](https://packagist.org/packages/damcclean/sendinblue)
 
-This package provides an easy wrapper around the Sendinblue API for Laravel 5 applications. Behind the scenes of this package, we use the official Sendinblue SDK for PHP.
+This package provides an easy wrapper around the Sendinblue API for Laravel 5 applications. Behind the scenes of this package, we use the [official Sendinblue SDK](https://github.com/sendinblue/APIv3-php-library/tree/master/docs/Api) for PHP.
 
 Here are some of the available methods:
 
