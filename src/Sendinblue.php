@@ -5,6 +5,7 @@ namespace Damcclean\Sendinblue;
 use GuzzleHttp\Client;
 use SendinBlue\Client\Api\AccountApi;
 use SendinBlue\Client\Api\ContactsApi;
+use SendinBlue\Client\Api\AttributesApi;
 use SendinBlue\Client\Configuration;
 
 class Sendinblue
@@ -16,6 +17,7 @@ class Sendinblue
 
         $this->accounts = new AccountApi($this->client, $this->config);
         $this->contacts = new ContactsApi($this->client, $this->config);
+        $this->attributes = new AttributesApi($this->client, $this->config);
     }
 
     public function getAccount()
@@ -78,5 +80,20 @@ class Sendinblue
         ];
 
         return $this->contacts->createList(json_encode($options));
+    }
+
+    public function getAttributes()
+    {
+        return $this->attributes->getAttributes();
+    }
+
+    public function createAttribute($name, $category = null, $attribute = null)
+    {
+        return $this->attributes->createAttribute($category, $name, $attribute);
+    }
+
+    public function deleteAttribute($category = null, $name)
+    {
+        return $this->attributes->deleteAttribute($category, $name);
     }
 }
