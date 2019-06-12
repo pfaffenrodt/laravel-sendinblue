@@ -1,6 +1,6 @@
 {
     "name": "damcclean/laravel-sendinblue",
-    "description": "Manage Send in Blue Newsletters in Laravel",
+    "description": "This package provides an easy wrapper around the Sendinblue API for Laravel 5 applications.",
     "keywords": [
         "damcclean",
         "sendinblue"
