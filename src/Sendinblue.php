@@ -80,6 +80,11 @@ class Sendinblue
         return $this->contacts->addContactToList(json_encode($options));
     }
 
+    public function removeContactFromList($listId, $email)
+    {
+        return $this->contacts->removeContactFromList($listId, $email);
+    }
+
     public function deleteContact($email)
     {
         return $this->contacts->deleteContact($email);
