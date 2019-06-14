@@ -81,6 +81,11 @@ class Sendinblue
     {
         return $this->contacts->getFolder($id);
     }
+
+    public function getFolderLists($id)
+    {
+        return $this->contacts->getFolderLists($id);
+    }
     
     public function createFolder($name) 
     {
