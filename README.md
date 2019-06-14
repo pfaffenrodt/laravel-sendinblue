@@ -40,7 +40,7 @@ Sendinblue::createList('Blog Mailing List', 7);
 You can install the package via composer:
 
 ```bash
-composer require damcclean/sendinblue
+composer require damcclean/laravel-sendinblue
 ```
 
 Then you can publish the configuration file:
