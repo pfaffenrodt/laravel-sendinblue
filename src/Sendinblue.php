@@ -35,7 +35,7 @@ class Sendinblue
         return $this->contacts->getContactInfo($email);
     }
 
-    public function createContact($email, $attributes = null)
+    public function createContact($email, $attributes = null, $listIds = null)
     {
         $options = [
             'email' => $email
@@ -43,6 +43,10 @@ class Sendinblue
 
         if($attributes != null) {
             $options['attributes'] = $attributes;
+        }
+
+        if($listIds != null) {
+            $options['listIds'] => $listIds;
         }
 
         return $this->contacts->createContact(json_encode($options));
