@@ -70,6 +70,37 @@ class Sendinblue
         return $this->contacts->getContactStats($id);
     }
 
+    public function updateContact($email, $properties)
+    {
+        $options = [];
+
+        if(array_key_exists('attributes', $properties)) {
+            $options['attributes'] = $properties['attributes'];
+        }
+        
+        if(array_key_exists('emailBlacklisted', $properties)) {
+            $options['emailBlacklisted'] = $properties['emailBlacklisted'];
+        }
+
+        if(array_key_exists('smsBlacklisted', $properties)) {
+            $options['smsBlacklisted'] = $properties['smsBlacklisted'];
+        }
+
+        if(array_key_exists('listIds', $properties)) {
+            $options['listIds'] = $properties['listIds'];
+        }
+
+        if(array_key_exists('unlinkListIds', $properties)) {
+            $options['unlinkListIds'] = $properties['unlinkListIds'];
+        }
+
+        if(array_key_exists('smtpBlacklistSender', $properties)) {
+            $options['smtpBlacklistSender'] = $properties['smtpBlacklistSender'];
+        }
+
+        return $this->contacts->updateContact($email, $options);
+    }
+
     public function addContactToList($listId, $email)
     {
         $options = [
