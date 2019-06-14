@@ -20,10 +20,18 @@ class Sendinblue
         $this->attributes = new AttributesApi($this->client, $this->config);
     }
 
+    /*
+        Account
+    */
+
     public function getAccount()
     {
         return $this->accounts->getAccount();
     }
+
+    /*
+        Contacts
+    */
 
     public function getContacts()
     {
@@ -77,6 +85,10 @@ class Sendinblue
         return $this->contacts->deleteContact($email);
     }
 
+    /*
+        Folders
+    */
+
     public function getFolders()
     {
         return $this->contacts->getFolders();
@@ -106,6 +118,10 @@ class Sendinblue
         return $this->contacts->deleteFolder($id);
     }
 
+    /*
+        Lists
+    */
+
     public function getLists()
     {
         return $this->contacts->getLists();
@@ -130,6 +146,10 @@ class Sendinblue
     {
         return $this->contacts->deleteList($id);
     }
+
+    /*
+        Attributes
+    */
 
     public function getAttributes()
     {
