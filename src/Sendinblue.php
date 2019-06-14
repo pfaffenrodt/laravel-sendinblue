@@ -30,6 +30,11 @@ class Sendinblue
         return $this->contacts->getContacts();
     }
 
+    public function getContactsFromList($listId)
+    {
+        return $this->contacts->getContactsFromList($listId);
+    }
+
     public function getContactDetails($email)
     {
         return $this->contacts->getContactInfo($email);
