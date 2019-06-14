@@ -46,7 +46,7 @@ class Sendinblue
         }
 
         if($listIds != null) {
-            $options['listIds'] => $listIds;
+            $options['listIds'] = $listIds;
         }
 
         return $this->contacts->createContact(json_encode($options));
