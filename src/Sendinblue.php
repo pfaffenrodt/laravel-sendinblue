@@ -76,6 +76,11 @@ class Sendinblue
     {
         return $this->contacts->deleteContact($email);
     }
+
+    public function getFolder($id)
+    {
+        return $this->contacts->getFolder($id);
+    }
     
     public function createFolder($name) 
     {
