@@ -6,6 +6,8 @@
 
 This package provides an easy wrapper around the Sendinblue API for Laravel 5 applications. Behind the scenes of this package, we use the [official Sendinblue SDK](https://github.com/sendinblue/APIv3-php-library/tree/master/docs/Api) for PHP.
 
+This package is **not a mail driver**, just a manager for contacts and other Sendinblue things. Think of it like the Sendinblue version of [Spatie's Newsletter](https://github.com/spatie/laravel-newsletter) package. This package is in no way affiliated with Sendinblue.
+
 Here are some of the available methods:
 
 ```php
