@@ -76,6 +76,11 @@ class Sendinblue
         return $this->contacts->createFolder(json_encode($options));
     }
 
+    public function deleteFolder($id)
+    {
+        return $this->contacts->deleteFolder($id);
+    }
+
     public function getLists()
     {
         return $this->contacts->getLists();
