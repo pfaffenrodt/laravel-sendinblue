@@ -52,6 +52,11 @@ class Sendinblue
         return $this->contacts->createContact(json_encode($options));
     }
 
+    public function getContactStats($id)
+    {
+        return $this->contacts->getContactStats($id);
+    }
+
     public function addContactToList($listId, $email)
     {
         $options = [
