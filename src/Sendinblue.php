@@ -101,6 +101,11 @@ class Sendinblue
         return $this->contacts->createList(json_encode($options));
     }
 
+    public function deleteList($id)
+    {
+        return $this->contacts->deleteList($id);
+    }
+
     public function getAttributes()
     {
         return $this->attributes->getAttributes();
