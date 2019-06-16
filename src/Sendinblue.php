@@ -3,10 +3,10 @@
 namespace Damcclean\Sendinblue;
 
 use GuzzleHttp\Client;
+use SendinBlue\Client\Configuration;
 use SendinBlue\Client\Api\AccountApi;
 use SendinBlue\Client\Api\ContactsApi;
 use SendinBlue\Client\Api\AttributesApi;
-use SendinBlue\Client\Configuration;
 
 class Sendinblue
 {
