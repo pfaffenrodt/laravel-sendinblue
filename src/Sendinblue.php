@@ -113,7 +113,13 @@ class Sendinblue
 
     public function removeContactFromList($listId, $email)
     {
-        return $this->contacts->removeContactFromList($listId, $email);
+        $options = [
+            'emails' => [
+                $email
+            ]
+        ];
+
+        return $this->contacts->removeContactFromList($listId, json_encode($options));
     }
 
     public function deleteContact($email)
