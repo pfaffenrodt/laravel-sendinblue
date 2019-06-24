@@ -38,17 +38,17 @@ class Sendinblue
         return $this->contacts->getContacts();
     }
 
-    public function getContactsFromList($listId)
+    public function getContactsFromList(int $listId)
     {
         return $this->contacts->getContactsFromList($listId);
     }
 
-    public function getContactDetails($email)
+    public function getContactDetails(string $email)
     {
         return $this->contacts->getContactInfo($email);
     }
 
-    public function createContact($email, $attributes = null, $listIds = null)
+    public function createContact(string $email, $attributes = null, $listIds = null)
     {
         $options = [
             'email' => $email
@@ -65,12 +65,12 @@ class Sendinblue
         return $this->contacts->createContact(json_encode($options));
     }
 
-    public function getContactStats($id)
+    public function getContactStats(int $id)
     {
         return $this->contacts->getContactStats($id);
     }
 
-    public function updateContact($email, $properties)
+    public function updateContact(string $email, array $properties)
     {
         $options = [];
 
@@ -101,7 +101,7 @@ class Sendinblue
         return $this->contacts->updateContact($email, $options);
     }
 
-    public function addContactToList($listId, $email)
+    public function addContactToList(int $listId, string $email)
     {
         $options = [
             'listId' => $listId,
@@ -111,7 +111,7 @@ class Sendinblue
         return $this->contacts->addContactToList(json_encode($options));
     }
 
-    public function removeContactFromList($listId, $email)
+    public function removeContactFromList(int $listId, string $email)
     {
         $options = [
             'emails' => [
@@ -122,7 +122,7 @@ class Sendinblue
         return $this->contacts->removeContactFromList($listId, json_encode($options));
     }
 
-    public function deleteContact($email)
+    public function deleteContact(string $email)
     {
         return $this->contacts->deleteContact($email);
     }
@@ -136,17 +136,17 @@ class Sendinblue
         return $this->contacts->getFolders();
     }
 
-    public function getFolder($id)
+    public function getFolder(int $id)
     {
         return $this->contacts->getFolder($id);
     }
 
-    public function getFolderLists($id)
+    public function getFolderLists(int $id)
     {
         return $this->contacts->getFolderLists($id);
     }
     
-    public function createFolder($name) 
+    public function createFolder(string $name) 
     {
         $options = [
             'name' => $name
@@ -155,7 +155,7 @@ class Sendinblue
         return $this->contacts->createFolder(json_encode($options));
     }
 
-    public function deleteFolder($id)
+    public function deleteFolder(int $id)
     {
         return $this->contacts->deleteFolder($id);
     }
@@ -169,12 +169,12 @@ class Sendinblue
         return $this->contacts->getLists();
     }
 
-    public function getList($listId)
+    public function getList(int $listId)
     {
         return $this->contacts->getList($listId);
     }
 
-    public function createList($name, $folderId)
+    public function createList(string $name, int $folderId)
     {
         $options = [
             'name' => $name,
@@ -184,7 +184,7 @@ class Sendinblue
         return $this->contacts->createList(json_encode($options));
     }
 
-    public function deleteList($id)
+    public function deleteList(int $id)
     {
         return $this->contacts->deleteList($id);
     }
@@ -198,12 +198,12 @@ class Sendinblue
         return $this->attributes->getAttributes();
     }
 
-    public function createAttribute($name, $category = null, $attribute = null)
+    public function createAttribute(string $name, $category = null, $attribute = null)
     {
         return $this->attributes->createAttribute($category, $name, $attribute);
     }
 
-    public function deleteAttribute($category = null, $name)
+    public function deleteAttribute($category = null, string $name)
     {
         return $this->attributes->deleteAttribute($category, $name);
     }
