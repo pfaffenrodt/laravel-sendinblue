@@ -2,13 +2,13 @@
 
 namespace Damcclean\Sendinblue\Tests;
 
+use Damcclean\Sendinblue\Sendinblue;
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
-use GuzzleHttp\Handler\MockHandler;
-use Damcclean\Sendinblue\Sendinblue;
 use Illuminate\Support\Facades\Config;
+use PHPUnit\Framework\TestCase;
 use SendinBlue\Client\Model\GetAccount;
 
 class SendinblueTest extends TestCase
