@@ -21,7 +21,7 @@
         "sendinblue/api-v3-sdk": "^6.1"
     },
     "require-dev": {
-        "orchestra/testbench": "3.8.*",
+        "mockery/mockery": "^1.2",
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {

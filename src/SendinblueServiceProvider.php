@@ -2,6 +2,7 @@
 
 namespace Damcclean\Sendinblue;
 
+use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 
 class SendinblueServiceProvider extends ServiceProvider
@@ -20,7 +21,7 @@ class SendinblueServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'sendinblue');
 
         $this->app->singleton('sendinblue', function () {
-            return new Sendinblue;
+            return new Sendinblue(new Client());
         });
     }
 }
