@@ -3,11 +3,11 @@
 namespace Damcclean\Sendinblue;
 
 use GuzzleHttp\Client;
-use SendinBlue\Client\Configuration;
-use SendinBlue\Client\Api\AccountApi;
-use SendinBlue\Client\Api\ContactsApi;
-use SendinBlue\Client\Api\AttributesApi;
 use Illuminate\Support\Facades\Config;
+use SendinBlue\Client\Api\AccountApi;
+use SendinBlue\Client\Api\AttributesApi;
+use SendinBlue\Client\Api\ContactsApi;
+use SendinBlue\Client\Configuration;
 
 class Sendinblue
 {
@@ -80,8 +80,9 @@ class Sendinblue
     }
 
     /**
-     * @return \SendinBlue\Client\Model\GetAccount
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetAccount
      */
     public function getAccount()
     {
@@ -89,8 +90,9 @@ class Sendinblue
     }
 
     /**
-     * @return \SendinBlue\Client\Model\GetContacts
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetContacts
      */
     public function getContacts()
     {
@@ -99,8 +101,10 @@ class Sendinblue
 
     /**
      * @param $listId
-     * @return \SendinBlue\Client\Model\GetContacts
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetContacts
      */
     public function getContactsFromList($listId)
     {
@@ -109,8 +113,10 @@ class Sendinblue
 
     /**
      * @param $email
-     * @return \SendinBlue\Client\Model\GetExtendedContactDetails
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetExtendedContactDetails
      */
     public function getContactDetails($email)
     {
@@ -121,13 +127,15 @@ class Sendinblue
      * @param $email
      * @param null $attributes
      * @param null $listIds
-     * @return \SendinBlue\Client\Model\CreateUpdateContactModel
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\CreateUpdateContactModel
      */
     public function createContact($email, $attributes = null, $listIds = null)
     {
         $options = [
-            'email' => $email
+            'email' => $email,
         ];
 
         if ($attributes != null) {
@@ -143,8 +151,10 @@ class Sendinblue
 
     /**
      * @param $email
-     * @return \SendinBlue\Client\Model\GetContactCampaignStats
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetContactCampaignStats
      */
     public function getContactStats($email)
     {
@@ -154,6 +164,7 @@ class Sendinblue
     /**
      * @param $email
      * @param $properties
+     *
      * @throws \SendinBlue\Client\ApiException
      */
     public function updateContact($email, $properties)
@@ -190,8 +201,10 @@ class Sendinblue
     /**
      * @param $listId
      * @param $email
-     * @return \SendinBlue\Client\Model\PostContactInfo
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\PostContactInfo
      */
     public function addContactToList($listId, $email)
     {
@@ -201,15 +214,17 @@ class Sendinblue
     /**
      * @param $listId
      * @param $email
-     * @return \SendinBlue\Client\Model\PostContactInfo
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\PostContactInfo
      */
     public function removeContactFromList($listId, $email)
     {
         $options = [
             'emails' => [
-                $email
-            ]
+                $email,
+            ],
         ];
 
         return $this->getContactsApi()->removeContactFromList($listId, json_encode($options));
@@ -217,6 +232,7 @@ class Sendinblue
 
     /**
      * @param $email
+     *
      * @throws \SendinBlue\Client\ApiException
      */
     public function deleteContact($email)
@@ -225,8 +241,9 @@ class Sendinblue
     }
 
     /**
-     * @return \SendinBlue\Client\Model\GetFolders
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetFolders
      */
     public function getFolders($limit, $offset)
     {
@@ -235,8 +252,10 @@ class Sendinblue
 
     /**
      * @param $id
-     * @return \SendinBlue\Client\Model\GetFolder
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetFolder
      */
     public function getFolder($id)
     {
@@ -245,8 +264,10 @@ class Sendinblue
 
     /**
      * @param $id
-     * @return \SendinBlue\Client\Model\GetFolderLists
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetFolderLists
      */
     public function getFolderLists($id)
     {
@@ -255,13 +276,15 @@ class Sendinblue
 
     /**
      * @param $name
-     * @return \SendinBlue\Client\Model\CreateModel
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\CreateModel
      */
     public function createFolder($name)
     {
         $options = [
-            'name' => $name
+            'name' => $name,
         ];
 
         return $this->getContactsApi()->createFolder(json_encode($options));
@@ -269,6 +292,7 @@ class Sendinblue
 
     /**
      * @param $id
+     *
      * @throws \SendinBlue\Client\ApiException
      */
     public function deleteFolder($id)
@@ -277,8 +301,9 @@ class Sendinblue
     }
 
     /**
-     * @return \SendinBlue\Client\Model\GetLists
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetLists
      */
     public function getLists()
     {
@@ -287,8 +312,10 @@ class Sendinblue
 
     /**
      * @param $listId
-     * @return \SendinBlue\Client\Model\GetExtendedList
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetExtendedList
      */
     public function getList($listId)
     {
@@ -298,14 +325,16 @@ class Sendinblue
     /**
      * @param $name
      * @param $folderId
-     * @return \SendinBlue\Client\Model\CreateModel
+     *
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\CreateModel
      */
     public function createList($name, $folderId)
     {
         $options = [
-            'name' => $name,
-            'folderId' => $folderId
+            'name'     => $name,
+            'folderId' => $folderId,
         ];
 
         return $this->getContactsApi()->createList(json_encode($options));
@@ -313,6 +342,7 @@ class Sendinblue
 
     /**
      * @param $id
+     *
      * @throws \SendinBlue\Client\ApiException
      */
     public function deleteList($id)
@@ -321,8 +351,9 @@ class Sendinblue
     }
 
     /**
-     * @return \SendinBlue\Client\Model\GetAttributes
      * @throws \SendinBlue\Client\ApiException
+     *
+     * @return \SendinBlue\Client\Model\GetAttributes
      */
     public function getAttributes()
     {
@@ -333,6 +364,7 @@ class Sendinblue
      * @param $name
      * @param null $category
      * @param null $attribute
+     *
      * @throws \SendinBlue\Client\ApiException
      */
     public function createAttribute($name, $category = null, $attribute = null)
@@ -343,9 +375,10 @@ class Sendinblue
     /**
      * @param null $category
      * @param $name
+     *
      * @throws \SendinBlue\Client\ApiException
      */
-    public function deleteAttribute($category = null, $name)
+    public function deleteAttribute($category, $name)
     {
         return $this->getAttributesApi()->deleteAttribute($category, $name);
     }
