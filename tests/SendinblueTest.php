@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\TestCase;
 use SendinBlue\Client\Model\GetAccount;
+use SendinBlue\Client\Model\GetAttributes;
 use SendinBlue\Client\Model\GetContacts;
 
 class SendinblueTest extends TestCase
@@ -151,7 +152,13 @@ class SendinblueTest extends TestCase
     /** @test */
     public function can_get_attributes()
     {
-        //
+        Config::shouldReceive('get')
+            ->once()
+            ->andReturn('api-key');
+
+        $response = $this->getSendinblue(200, json_encode([]))->getAttributes();
+
+        $this->assertInstanceOf(GetAttributes::class, $response);
     }
 
     /** @test */
