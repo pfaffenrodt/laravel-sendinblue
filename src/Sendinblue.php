@@ -46,6 +46,8 @@ class Sendinblue
     }
 
     /**
+     * Get account information
+     *
      * @throws \SendinBlue\Client\ApiException
      *
      * @return \SendinBlue\Client\Model\GetAccount
@@ -56,6 +58,8 @@ class Sendinblue
     }
 
     /**
+     * Get contacts
+     *
      * @throws \SendinBlue\Client\ApiException
      *
      * @return \SendinBlue\Client\Model\GetContacts
@@ -66,6 +70,8 @@ class Sendinblue
     }
 
     /**
+     * Get contacts from a list
+     *
      * @param $listId
      *
      * @throws \SendinBlue\Client\ApiException
@@ -78,6 +84,8 @@ class Sendinblue
     }
 
     /**
+     * Get details of a contact
+     *
      * @param $email
      *
      * @throws \SendinBlue\Client\ApiException
@@ -90,6 +98,8 @@ class Sendinblue
     }
 
     /**
+     * Create a contact
+     *
      * @param $email
      * @param null $attributes
      * @param null $listIds
@@ -116,6 +126,8 @@ class Sendinblue
     }
 
     /**
+     * Get statistics of a contact
+     *
      * @param $email
      *
      * @throws \SendinBlue\Client\ApiException
@@ -128,6 +140,8 @@ class Sendinblue
     }
 
     /**
+     * Update details for a contact
+     *
      * @param $email
      * @param $properties
      *
@@ -165,6 +179,8 @@ class Sendinblue
     }
 
     /**
+     * Add a contact to a list
+     *
      * @param $listId
      * @param $email
      *
@@ -178,6 +194,8 @@ class Sendinblue
     }
 
     /**
+     * Remove a contact from a list
+     *
      * @param $listId
      * @param $email
      *
@@ -197,6 +215,8 @@ class Sendinblue
     }
 
     /**
+     * Delete a contact
+     *
      * @param $email
      *
      * @throws \SendinBlue\Client\ApiException
@@ -207,6 +227,8 @@ class Sendinblue
     }
 
     /**
+     * Get folders
+     *
      * @throws \SendinBlue\Client\ApiException
      *
      * @return \SendinBlue\Client\Model\GetFolders
@@ -217,6 +239,8 @@ class Sendinblue
     }
 
     /**
+     * Get a folder
+     *
      * @param $id
      *
      * @throws \SendinBlue\Client\ApiException
@@ -229,6 +253,8 @@ class Sendinblue
     }
 
     /**
+     * Get lists belonging to a folder
+     *
      * @param $id
      *
      * @throws \SendinBlue\Client\ApiException
@@ -241,6 +267,8 @@ class Sendinblue
     }
 
     /**
+     * Create a folder
+     *
      * @param $name
      *
      * @throws \SendinBlue\Client\ApiException
@@ -257,6 +285,8 @@ class Sendinblue
     }
 
     /**
+     * Delete a folder
+     *
      * @param $id
      *
      * @throws \SendinBlue\Client\ApiException
@@ -267,6 +297,8 @@ class Sendinblue
     }
 
     /**
+     * Get lists
+     *
      * @throws \SendinBlue\Client\ApiException
      *
      * @return \SendinBlue\Client\Model\GetLists
@@ -277,6 +309,8 @@ class Sendinblue
     }
 
     /**
+     * Get a list
+     *
      * @param $listId
      *
      * @throws \SendinBlue\Client\ApiException
@@ -289,6 +323,8 @@ class Sendinblue
     }
 
     /**
+     * Create a list
+     *
      * @param $name
      * @param $folderId
      *
@@ -307,6 +343,8 @@ class Sendinblue
     }
 
     /**
+     * Delete a list
+     *
      * @param $id
      *
      * @throws \SendinBlue\Client\ApiException
@@ -317,6 +355,8 @@ class Sendinblue
     }
 
     /**
+     * Get attributes
+     *
      * @throws \SendinBlue\Client\ApiException
      *
      * @return \SendinBlue\Client\Model\GetAttributes
@@ -327,6 +367,8 @@ class Sendinblue
     }
 
     /**
+     * Create an attribute
+     *
      * @param $name
      * @param null $category
      * @param null $attribute
@@ -339,6 +381,8 @@ class Sendinblue
     }
 
     /**
+     * Delete an attribute
+     *
      * @param null $category
      * @param $name
      *
