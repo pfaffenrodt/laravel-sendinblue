@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\TestCase;
 use SendinBlue\Client\Model\GetAccount;
+use SendinBlue\Client\Model\GetContacts;
 
 class SendinblueTest extends TestCase
 {
@@ -22,7 +23,8 @@ class SendinblueTest extends TestCase
         return new Sendinblue($client);
     }
 
-    public function testGetAccount()
+    /** @test */
+    public function can_get_account()
     {
         Config::shouldReceive('get')
             ->once()
@@ -30,5 +32,137 @@ class SendinblueTest extends TestCase
 
         $response = $this->getSendinblue(200, json_encode([]))->getAccount();
         $this->assertInstanceOf(GetAccount::class, $response);
+    }
+
+    /** @test */
+    public function can_get_contacts()
+    {
+        Config::shouldReceive('get')
+            ->once()
+            ->andReturn('api-key');
+
+        $response = $this->getSendinblue(200, json_encode([]))->getContacts();
+
+        $this->assertInstanceOf(GetContacts::class, $response);
+    }
+
+    /** @test */
+    public function can_get_contacts_from_list()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_get_contact_details()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_create_contact()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_get_contact_stats()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_update_contact()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_add_contact_to_list()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_remove_contact_from_list()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_delete_contact()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_get_folders()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_get_folder()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_get_folder_lists()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_create_folder()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_delete_folder()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_get_lists()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_get_list()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_create_list()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_delete_list()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_get_attributes()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_create_attribute()
+    {
+        //
+    }
+
+    /** @test */
+    public function can_delete_attribute()
+    {
+        //
     }
 }
