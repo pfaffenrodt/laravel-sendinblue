@@ -11,6 +11,8 @@ use SendinBlue\Client\Configuration;
 
 class Sendinblue
 {
+    use Api;
+
     /** @var Client */
     private $client;
 
@@ -41,42 +43,6 @@ class Sendinblue
         }
 
         return $this->config;
-    }
-
-    /**
-     * @return AccountApi
-     */
-    private function getAccountApi()
-    {
-        if (null === $this->accountApi) {
-            $this->accountApi = new AccountApi($this->client, $this->getConfiguration());
-        }
-
-        return $this->accountApi;
-    }
-
-    /**
-     * @return ContactsApi
-     */
-    private function getContactsApi()
-    {
-        if (null === $this->contactsApi) {
-            $this->contactsApi = new ContactsApi($this->client, $this->getConfiguration());
-        }
-
-        return $this->contactsApi;
-    }
-
-    /**
-     * @return AttributesApi
-     */
-    private function getAttributesApi()
-    {
-        if (null === $this->attributesApi) {
-            $this->attributesApi = new AttributesApi($this->client, $this->getConfiguration());
-        }
-
-        return $this->attributesApi;
     }
 
     /**

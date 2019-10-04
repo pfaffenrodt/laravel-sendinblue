@@ -22,7 +22,7 @@ class SendinblueTest extends TestCase
         return new Sendinblue($client);
     }
 
-    public function testGetAccounts()
+    public function testGetAccount()
     {
         Config::shouldReceive('get')
             ->once()
