@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 use SendinBlue\Client\Model\GetAccount;
 use SendinBlue\Client\Model\GetAttributes;
 use SendinBlue\Client\Model\GetContacts;
+use SendinBlue\Client\Model\GetFolders;
 use SendinBlue\Client\Model\GetLists;
 
 class SendinblueTest extends TestCase
@@ -99,7 +100,13 @@ class SendinblueTest extends TestCase
     /** @test */
     public function can_get_folders()
     {
-        //
+        Config::shouldReceive('get')
+            ->once()
+            ->andReturn('api-key');
+
+        $response = $this->getSendinblue(200, json_encode([]))->getFolders(10, 0);
+
+        $this->assertInstanceOf(GetFolders::class, $response);
     }
 
     /** @test */
