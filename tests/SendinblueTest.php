@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 use SendinBlue\Client\Model\GetAccount;
 use SendinBlue\Client\Model\GetAttributes;
 use SendinBlue\Client\Model\GetContacts;
+use SendinBlue\Client\Model\GetLists;
 
 class SendinblueTest extends TestCase
 {
@@ -128,7 +129,13 @@ class SendinblueTest extends TestCase
     /** @test */
     public function can_get_lists()
     {
-        //
+        Config::shouldReceive('get')
+            ->once()
+            ->andReturn('api-key');
+
+        $response = $this->getSendinblue(200, json_encode([]))->getLists();
+
+        $this->assertInstanceOf(GetLists::class, $response);
     }
 
     /** @test */
