@@ -222,4 +222,3 @@ class SendinblueTest extends TestCase
         //
     }
 }
-
