@@ -13,12 +13,6 @@ class Sendinblue
 {
     use Api;
 
-    /** @var Client */
-    private $client;
-
-    /** @var Configuration */
-    private $config = null;
-
     /** @var AccountApi */
     private $accountApi = null;
 
@@ -28,22 +22,19 @@ class Sendinblue
     /** @var AttributesApi */
     private $attributesApi = null;
 
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
-
     /**
-     * @return Configuration
+     * Sendinblue constructor.
+     * @param AccountApi    $accountApi
+     * @param ContactsApi   $contactsApi
+     * @param AttributesApi $attributesApi
      */
-    private function getConfiguration()
+    public function __construct(AccountApi $accountApi, ContactsApi $contactsApi, AttributesApi $attributesApi)
     {
-        if (null === $this->config) {
-            $this->config = Configuration::getDefaultConfiguration()->setApiKey('api-key', Config::get('sendinblue.apiKey'));
-        }
-
-        return $this->config;
+        $this->accountApi    = $accountApi;
+        $this->contactsApi   = $contactsApi;
+        $this->attributesApi = $attributesApi;
     }
+
 
     /**
      * Get account information.

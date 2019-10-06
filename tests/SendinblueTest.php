@@ -2,13 +2,11 @@
 
 namespace Damcclean\Sendinblue\Tests;
 
-use Damcclean\Sendinblue\Sendinblue;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
-use PHPUnit\Framework\TestCase;
+use SendinBlue\Client\Api\ContactsApi;
+use SendinBlue\Client\Configuration;
+use SendinBlue\Client\Model\CreateUpdateContactModel;
 use SendinBlue\Client\Model\GetAccount;
 use SendinBlue\Client\Model\GetAttributes;
 use SendinBlue\Client\Model\GetContacts;
@@ -17,34 +15,46 @@ use SendinBlue\Client\Model\GetLists;
 
 class SendinblueTest extends TestCase
 {
-    private function getSendinblue($status, $body)
-    {
-        $mock = new MockHandler([new Response($status, [], $body)]);
-        $handler = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handler]);
 
-        return new Sendinblue($client);
+    /**
+     * @return \Damcclean\Sendinblue\Sendinblue
+     */
+    private function getSendinblue()
+    {
+        $instance = app('sendinblue');
+        $this->assertInstanceOf(\Damcclean\Sendinblue\Sendinblue::class, $instance);
+        return $instance;
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->configProvideApiKey();
+        $this->mockHttpResponse(200, json_encode([]));
+    }
+
+    /** @test */
+    public function it_provide_api_key_from_config()
+    {
+        Config::shouldReceive('get')
+            ->once()
+            ->andReturn('api-key');
+        $configuration = app('sendinblue.config');
+        $this->assertInstanceOf(Configuration::class, $configuration);
+        $this->assertEquals('api-key', $configuration->getApiKey('api-key'));
     }
 
     /** @test */
     public function can_get_account()
     {
-        Config::shouldReceive('get')
-            ->once()
-            ->andReturn('api-key');
-
-        $response = $this->getSendinblue(200, json_encode([]))->getAccount();
+        $response = $this->getSendinblue()->getAccount();
         $this->assertInstanceOf(GetAccount::class, $response);
     }
 
     /** @test */
     public function can_get_contacts()
     {
-        Config::shouldReceive('get')
-            ->once()
-            ->andReturn('api-key');
-
-        $response = $this->getSendinblue(200, json_encode([]))->getContacts();
+        $response = $this->getSendinblue()->getContacts();
 
         $this->assertInstanceOf(GetContacts::class, $response);
     }
@@ -61,10 +71,47 @@ class SendinblueTest extends TestCase
         //
     }
 
-    /** @test */
-    public function can_create_contact()
+    public function createContactScenarios()
     {
-        //
+        $email = 'sendinblue@example.com';
+        $attributes = ['attribute1', 'attribute2', 'attribute3'];
+        $listIds = ['id', 'id2'];
+        $contactData = collect([
+            'email' => $email,
+            'attributes' => $attributes,
+            'listIds' => $listIds
+        ]);
+        return [
+            'create_contact_with_email' => [$contactData->only('email')],
+            'create_contact_with_attributes' => [$contactData->only('email', 'attributes')],
+            'create_contact_with_listIds' => [$contactData->only('email', 'listIds')],
+            'create_contact_with_all_values' => [$contactData->only('email', 'attributes', 'listIds')]
+        ];
+    }
+
+    /**
+     * @dataProvider createContactScenarios
+     * @test
+     */
+    public function can_create_contact(Collection $contactData)
+    {
+        $expectedContact = new CreateUpdateContactModel(['id' => 'test']);
+        $mockApi = $this->mock(ContactsApi::class);
+        app()->instance(ContactsApi::class, $mockApi);
+
+        $mockApi
+            ->shouldReceive('createContact')
+            ->with($contactData->toJson())
+            ->andReturn($expectedContact);
+
+        $newContact = $this->getSendinblue()
+            ->createContact(
+                $contactData->get('email'),
+                $contactData->get('attributes'),
+                $contactData->get('listIds')
+            );
+        $this->assertEquals($expectedContact, $newContact);
+
     }
 
     /** @test */
@@ -100,11 +147,7 @@ class SendinblueTest extends TestCase
     /** @test */
     public function can_get_folders()
     {
-        Config::shouldReceive('get')
-            ->once()
-            ->andReturn('api-key');
-
-        $response = $this->getSendinblue(200, json_encode([]))->getFolders(10, 0);
+        $response = $this->getSendinblue()->getFolders(10, 0);
 
         $this->assertInstanceOf(GetFolders::class, $response);
     }
@@ -136,11 +179,7 @@ class SendinblueTest extends TestCase
     /** @test */
     public function can_get_lists()
     {
-        Config::shouldReceive('get')
-            ->once()
-            ->andReturn('api-key');
-
-        $response = $this->getSendinblue(200, json_encode([]))->getLists();
+        $response = $this->getSendinblue()->getLists();
 
         $this->assertInstanceOf(GetLists::class, $response);
     }
@@ -166,11 +205,7 @@ class SendinblueTest extends TestCase
     /** @test */
     public function can_get_attributes()
     {
-        Config::shouldReceive('get')
-            ->once()
-            ->andReturn('api-key');
-
-        $response = $this->getSendinblue(200, json_encode([]))->getAttributes();
+        $response = $this->getSendinblue()->getAttributes();
 
         $this->assertInstanceOf(GetAttributes::class, $response);
     }
@@ -187,3 +222,4 @@ class SendinblueTest extends TestCase
         //
     }
 }
+
