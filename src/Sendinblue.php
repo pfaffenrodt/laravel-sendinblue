@@ -28,8 +28,8 @@ class Sendinblue
      */
     public function __construct(AccountApi $accountApi, ContactsApi $contactsApi, AttributesApi $attributesApi)
     {
-        $this->accountApi    = $accountApi;
-        $this->contactsApi   = $contactsApi;
+        $this->accountApi = $accountApi;
+        $this->contactsApi = $contactsApi;
         $this->attributesApi = $attributesApi;
     }
 
