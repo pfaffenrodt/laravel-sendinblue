@@ -73,18 +73,18 @@ class SendinblueTest extends TestCase
 
     public function createContactScenarios()
     {
-        $email = 'sendinblue@example.com';
+        $email      = 'sendinblue@example.com';
         $attributes = ['attribute1', 'attribute2', 'attribute3'];
-        $listIds = ['id', 'id2'];
+        $listIds    = ['id', 'id2'];
         $contactData = collect([
-            'email' => $email,
+            'email'      => $email,
             'attributes' => $attributes,
-            'listIds' => $listIds
+            'listIds'    => $listIds
         ]);
         return [
-            'create_contact_with_email' => [$contactData->only('email')],
+            'create_contact_with_email'      => [$contactData->only('email')],
             'create_contact_with_attributes' => [$contactData->only('email', 'attributes')],
-            'create_contact_with_listIds' => [$contactData->only('email', 'listIds')],
+            'create_contact_with_listIds'    => [$contactData->only('email', 'listIds')],
             'create_contact_with_all_values' => [$contactData->only('email', 'attributes', 'listIds')]
         ];
     }

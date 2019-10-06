@@ -2,12 +2,9 @@
 
 namespace Damcclean\Sendinblue;
 
-use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Config;
 use SendinBlue\Client\Api\AccountApi;
 use SendinBlue\Client\Api\AttributesApi;
 use SendinBlue\Client\Api\ContactsApi;
-use SendinBlue\Client\Configuration;
 
 class Sendinblue
 {
@@ -24,6 +21,7 @@ class Sendinblue
 
     /**
      * Sendinblue constructor.
+     *
      * @param AccountApi    $accountApi
      * @param ContactsApi   $contactsApi
      * @param AttributesApi $attributesApi
