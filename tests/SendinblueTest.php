@@ -15,7 +15,6 @@ use SendinBlue\Client\Model\GetLists;
 
 class SendinblueTest extends TestCase
 {
-
     /**
      * @return \Damcclean\Sendinblue\Sendinblue
      */
@@ -23,6 +22,7 @@ class SendinblueTest extends TestCase
     {
         $instance = app('sendinblue');
         $this->assertInstanceOf(\Damcclean\Sendinblue\Sendinblue::class, $instance);
+
         return $instance;
     }
 
@@ -81,6 +81,7 @@ class SendinblueTest extends TestCase
             'attributes' => $attributes,
             'listIds'    => $listIds,
         ]);
+
         return [
             'create_contact_with_email'      => [$contactData->only('email')],
             'create_contact_with_attributes' => [$contactData->only('email', 'attributes')],
@@ -111,7 +112,6 @@ class SendinblueTest extends TestCase
                 $contactData->get('listIds')
             );
         $this->assertEquals($expectedContact, $newContact);
-
     }
 
     /** @test */

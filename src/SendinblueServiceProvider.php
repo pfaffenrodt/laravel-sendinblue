@@ -34,16 +34,19 @@ class SendinblueServiceProvider extends ServiceProvider
         $this->app->singleton(AccountApi::class, function ($app) {
             $client = $app->make('sendinblue.client');
             $config = $app->make('sendinblue.config');
+
             return new AccountApi($client, $config);
         });
         $this->app->singleton(ContactsApi::class, function ($app) {
             $client = $app->make('sendinblue.client');
             $config = $app->make('sendinblue.config');
+
             return new ContactsApi($client, $config);
         });
         $this->app->singleton(AttributesApi::class, function ($app) {
             $client = $app->make('sendinblue.client');
             $config = $app->make('sendinblue.config');
+
             return new AttributesApi($client, $config);
         });
         $this->app->bind('sendinblue', Sendinblue::class);

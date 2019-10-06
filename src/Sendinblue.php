@@ -33,7 +33,6 @@ class Sendinblue
         $this->attributesApi = $attributesApi;
     }
 
-
     /**
      * Get account information.
      *
