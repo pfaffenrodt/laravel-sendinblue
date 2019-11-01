@@ -21,6 +21,7 @@ class SendinblueTest extends TestCase
     private function getSendinblue()
     {
         $instance = app('sendinblue');
+
         $this->assertInstanceOf(\Damcclean\Sendinblue\Sendinblue::class, $instance);
 
         return $instance;
@@ -40,6 +41,7 @@ class SendinblueTest extends TestCase
             ->once()
             ->andReturn('api-key');
         $configuration = app('sendinblue.config');
+
         $this->assertInstanceOf(Configuration::class, $configuration);
         $this->assertEquals('api-key', $configuration->getApiKey('api-key'));
     }
@@ -48,6 +50,7 @@ class SendinblueTest extends TestCase
     public function can_get_account()
     {
         $response = $this->getSendinblue()->getAccount();
+
         $this->assertInstanceOf(GetAccount::class, $response);
     }
 
@@ -111,6 +114,7 @@ class SendinblueTest extends TestCase
                 $contactData->get('attributes'),
                 $contactData->get('listIds')
             );
+
         $this->assertEquals($expectedContact, $newContact);
     }
 
